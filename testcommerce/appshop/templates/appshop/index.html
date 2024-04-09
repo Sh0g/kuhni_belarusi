@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends "appshop/base.html" %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+<main class="mt-10 mx-auto  max-w-5xl px-4 sm:mt-12 sm:px-6 md: mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+    <div class="sm:text-center lg:text-left">
+        <h1 class="text-4xl font-semibold text-gray-900 sm:text-5xl md:text-6xl">
+            <span class="block xl:inline">Чехлы для мобильных телефонов</span>
+            <span class="block xl:inline text-green-500">по низким ценам</span>
+        </h1>
+    </div>
+</main>
+<div class="p-10 flex flex-row">
+        {% for item in items%}
+        <a href="{% url 'appshop:detail' item.id %}">
+            <div class="rounded overflow-hidden shadow-lg">
+            <img class="w-1/4" src="{{item.image.url}}">
+            <div class="px-6 py-4">
+                <p class="font-bold text-xl mb-2">{{item.name}}</p>
+                <p class="font-bold text-xl text-green-500 mb-2">{{item.prices}} BLR</p>
+                <p class="text-gray-700 text-base">{{item.description}}</p>
+            </div>
+            </div>
+        </a>
+        {% endfor %}
+</div>
+{% endblock content %}
+</body>
+</html>
