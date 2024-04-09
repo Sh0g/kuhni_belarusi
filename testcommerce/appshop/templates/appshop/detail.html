@@ -13,6 +13,8 @@
             <p class="mt-5">{{ item.name }}</p>
             <p class="mt-5 text-green-500">{{ item.prices }} BLR</p>
             <p class="mt-5 text-gray-700 text-base">{{ item.description }}</p>
+            <button class="bg-green-500 text-white mt-[50px]"><a href="{% url 'appshop:update_item' item.id %}">Update Item</a></button>
+            <button class="bg-green-500 text-white mt-[50px]"><a href="{% url 'appshop:delete_item' item.id %}">Delete Item</a></button>
         </div>
     </div>
   <h1>This detail page for: {{item.name}}</h1>
