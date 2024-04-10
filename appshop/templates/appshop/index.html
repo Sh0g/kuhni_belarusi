@@ -30,6 +30,10 @@
         </a>
         {% endfor %}
 </div>
+<form method="POST" action="{% url 'appshop:index' %}">
+    {% csrf_token %}
+    <button type="submit">Filter By Date</button>
+</form>
 {% endblock content %}
 </body>
 </html>

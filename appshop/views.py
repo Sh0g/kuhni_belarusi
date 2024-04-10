@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.template import loader
 from .models import Product
 
 def index (request):
@@ -49,3 +50,13 @@ def delete_item(request, id):
         'item': item
     }
     return render(request, "appshop/delete.html", context=context)
+
+
+def sortname(request):
+    if request.method=="POST":
+      data = Product.objects.order_by('name')
+      template = loader.get_template('index.html')
+      context = {
+        'items': data,
+      }
+    return HttpResponse(template.render(context, request))
