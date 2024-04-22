@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 from .models import Product
+from rest_framework import serializers
+from rest_framework import generics
+from appshop.serializers import ItemSerializer
 
 def index (request):
     items = Product.objects.all()
@@ -26,6 +29,22 @@ def add_item(request):
         item = Product(name=name, prices=prices, description=description, image=image)
         item.save()
     return render(request, "appshop/additem.html")
+
+class ItemListView(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ItemSerializer
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        sort_by = self.request.query_params.get('sort_by', 'name')
+        order_by = self.request.query_params.get('order_by', 'asc')
+
+        if sort_by == 'name':
+            queryset = queryset.order_by('name' if order_by == 'asc' else '-name')
+        elif sort_by == 'prices':
+            queryset = queryset.order_by('prices' if order_by == 'asc' else '-prices')
+
+        return queryset
 
 def update_item(request, id):
     item = Product.objects.get(id=id)
