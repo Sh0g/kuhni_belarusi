@@ -5,7 +5,7 @@ from django.shortcuts import render
 from .models import Item
 
 def scrape_data(request):
-    url = 'https://baraholka.onliner.by'
+    url = 'https://baraholka.onliner.by/viewforum.php?f=210'
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'lxml')
 
