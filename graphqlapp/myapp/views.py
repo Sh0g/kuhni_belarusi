@@ -6,16 +6,20 @@ from .models import Item
 
 def scrape_data(request):
     url = 'https://baraholka.onliner.by/viewforum.php?f=210'
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'lxml')
-
-    for product_div in soup.find_all("div", {"class": "x-product-view"}):
-        name = product_div.find("a").text.strip()
-        price_div = product_div.find("td", {"class": "cost"})
-        if price_div:
-            price = price_div.find("div", {"class": "price-primary"}).text.strip()
+    res = requests.get(url)
+    soup = BeautifulSoup(res.text,"lxml")
+    for item in soup.select('.ba-tbl-list__table'):
+        name_element = item.select_one('.txt a')
+        if name_element:
+            name = name_element.text.strip()
         else:
-            price = "N/A"
+            name = 'N/A'
+
+        price_element = item.select_one('.cost .price-primary')
+        if price_element:
+            price = price_element.text.strip()
+        else:
+            price = 'N/A'
 
         Item.objects.create(name=name, price=price)
 
