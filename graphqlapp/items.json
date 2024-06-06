@@ -1,0 +1,24 @@
+[
+  {
+    "model": "myapp.name",
+    "pk": 1,
+    "fields": {
+      "name": "Телевизор 1"
+    }
+  },
+  {
+    "model": "myapp.name",
+    "pk": 2,
+    "fields": {
+      "name": "Телевизор 2"
+    }
+  },
+  {
+    "model": "myapp.item",
+    "pk": 1,
+    "fields": {
+      "price": 300,
+      "names": [1, 2]
+    }
+  }
+]
