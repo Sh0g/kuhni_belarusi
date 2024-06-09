@@ -1,6 +1,6 @@
 import graphene
 from graphene_django.types import DjangoObjectType, ObjectType
-from models import Name, Item
+from myapp.models import Name, Item
 class NameType(DjangoObjectType):
     class Meta:
         model = Name

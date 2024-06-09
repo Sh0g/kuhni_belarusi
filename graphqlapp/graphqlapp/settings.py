@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 ]
 
 GRAPHENE = {
-    'SCHEMA': 'graphqlapp.schema.myapp.schema'
+    'SCHEMA': 'graphqlapp.schema.schema'
 }
 
 MIDDLEWARE = [
