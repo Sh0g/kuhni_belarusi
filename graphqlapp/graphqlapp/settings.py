@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 ]
 
 GRAPHENE = {
-    'SCHEMA': 'django_graphql_myapp.schema.schema'
+    'SCHEMA': 'graphqlapp.myapp.schema'
 }
 
 MIDDLEWARE = [
